@@ -21,13 +21,17 @@ class Test_Sauce_Work:
     def teardown_method(self):
         self.driver.quit()
 
+    def getData():
+        return [("1", "1"), ("okan", "yilmaz"), ("user", "test"), ("secure", "login")]
+
     def test_null_login(self):
         self.waitForElementVisible((By.ID, 'login-button'))
         loginBtn = self.driver.find_element(By.ID, "login-button")
         loginBtn.click()
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
-        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test-null-login.png")
+        self.driver.save_screenshot(
+            "homework-week-4/"+self.folderPath+"/test-null-login.png")
         assert errorMessage.text == "Epic sadface: Username is required"
 
     def test_null_password(self):
@@ -39,7 +43,8 @@ class Test_Sauce_Work:
         loginBtn.click()
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
-        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test-null-password.png")
+        self.driver.save_screenshot(
+            "homework-week-4/"+self.folderPath+"/test-null-password.png")
         assert errorMessage.text == "Epic sadface: Password is required"
 
     def test_locked_user(self):
@@ -55,7 +60,8 @@ class Test_Sauce_Work:
         loginBtn.click()
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
-        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test-locked_user.png")
+        self.driver.save_screenshot(
+            "homework-week-4/"+self.folderPath+"/test-locked_user.png")
         assert errorMessage.text == "Epic sadface: Sorry, this user has been locked out."
 
     def test_show_error_icon_test(self):
@@ -125,19 +131,21 @@ class Test_Sauce_Work:
         else:
             assert False
 
-    def test_invalid_login(self):
+    @pytest.mark.parametrize("username,password", getData())
+    def test_invalid_login(self, username, password):
         self.waitForElementVisible((By.ID, 'user-name'))
         usernameInput = self.driver.find_element(By.ID, "user-name")
         self.waitForElementVisible((By.ID, 'password'))
         passwordInput = self.driver.find_element(By.ID, "password")
-        usernameInput.send_keys("1")
-        passwordInput.send_keys("1")
+        usernameInput.send_keys(username)
+        passwordInput.send_keys(password)
         self.waitForElementVisible((By.ID, 'login-button'))
         loginBtn = self.driver.find_element(By.ID, "login-button")
         loginBtn.click()
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
-        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test_invalid_login.png")
+        self.driver.save_screenshot(
+            "homework-week-4/"+self.folderPath+"/test-invalid-login-{username}-{password}.png")
         assert errorMessage.text == "Epic sadface: Username and password do not match any user in this service"
 
     def test_add_all_items_to_cart(self):
@@ -188,7 +196,8 @@ class Test_Sauce_Work:
         self.waitForElementVisible((By.CLASS_NAME, 'complete-text'))
         successMessage = self.driver.find_element(
             By.CLASS_NAME, 'complete-text')
-        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test_confirm_order.png")
+        self.driver.save_screenshot(
+            "homework-week-4/"+self.folderPath+"/test_confirm_order.png")
         assert successMessage.text == "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
 
     def waitForElementVisible(self, locator, timeout=5):
