@@ -16,7 +16,7 @@ class Test_Sauce_Work:
         self.driver.maximize_window()
         self.driver.get("https://www.saucedemo.com/")
         self.folderPath = str(date.today())
-        Path(self.folderPath).mkdir(exist_ok=True)
+        Path("homework-week-4/"+self.folderPath).mkdir(exist_ok=True)
 
     def teardown_method(self):
         self.driver.quit()
@@ -27,7 +27,7 @@ class Test_Sauce_Work:
         loginBtn.click()
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
-        self.driver.save_screenshot(self.folderPath+"/homework-week-4/test-null-login.png")
+        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test-null-login.png")
         assert errorMessage.text == "Epic sadface: Username is required"
 
     def test_null_password(self):
@@ -39,7 +39,7 @@ class Test_Sauce_Work:
         loginBtn.click()
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
-        self.driver.save_screenshot(self.folderPath+"/homework-week-4/test-null-password.png")
+        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test-null-password.png")
         assert errorMessage.text == "Epic sadface: Password is required"
 
     def test_locked_user(self):
@@ -55,7 +55,7 @@ class Test_Sauce_Work:
         loginBtn.click()
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
-        self.driver.save_screenshot(self.folderPath+"/homework-week-4/test-locked_user.png")
+        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test-locked_user.png")
         assert errorMessage.text == "Epic sadface: Sorry, this user has been locked out."
 
     def test_show_error_icon_test(self):
@@ -67,7 +67,7 @@ class Test_Sauce_Work:
 
         if (errorIcons.__len__() > 1):
             self.driver.save_screenshot(
-                self.folderPath+"/homework-week-4/homework-week-4/test_show_error_icon.png")
+                "homework-week-4/"+self.folderPath+"/test_show_error_icon.png")
             assert True
         else:
             assert False
@@ -83,7 +83,7 @@ class Test_Sauce_Work:
             assert False
         else:
             self.driver.save_screenshot(
-                self.folderPath+"/homework-week-4/test_close_error_icon.png")
+                "homework-week-4/"+self.folderPath+"/test_close_error_icon.png")
             assert True
 
         # 2. Yöntem
@@ -108,7 +108,7 @@ class Test_Sauce_Work:
         get_url = self.driver.current_url
         if (get_url == "https://www.saucedemo.com/inventory.html"):
             self.driver.save_screenshot(
-                self.folderPath+"/homework-week-4/test_login_standard_user.png")
+                "homework-week-4/"+self.folderPath+"/test_login_standard_user.png")
             assert True
         else:
             assert False
@@ -120,7 +120,7 @@ class Test_Sauce_Work:
             By.CLASS_NAME, "inventory_item")
         if (productList.__len__() == 6):
             self.driver.save_screenshot(
-                self.folderPath+"/homework-week-4/test_show_product_count.png")
+                "homework-week-4/"+self.folderPath+"/test_show_product_count.png")
             assert True
         else:
             assert False
@@ -137,7 +137,7 @@ class Test_Sauce_Work:
         loginBtn.click()
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
-        self.driver.save_screenshot(self.folderPath+"/homework-week-4/test_invalid_login.png")
+        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test_invalid_login.png")
         assert errorMessage.text == "Epic sadface: Username and password do not match any user in this service"
 
     def test_add_all_items_to_cart(self):
@@ -158,7 +158,7 @@ class Test_Sauce_Work:
 
         if (itemList.__len__() == 6):
             self.driver.save_screenshot(
-                self.folderPath+"/homework-week-4/test_add_all_items_to_cart.png")
+                "homework-week-4/"+self.folderPath+"/test_add_all_items_to_cart.png")
             assert True
         else:
             assert False
@@ -188,7 +188,7 @@ class Test_Sauce_Work:
         self.waitForElementVisible((By.CLASS_NAME, 'complete-text'))
         successMessage = self.driver.find_element(
             By.CLASS_NAME, 'complete-text')
-        self.driver.save_screenshot(self.folderPath+"/homework-week-4/test_confirm_order.png")
+        self.driver.save_screenshot("homework-week-4/"+self.folderPath+"/test_confirm_order.png")
         assert successMessage.text == "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
 
     def waitForElementVisible(self, locator, timeout=5):
