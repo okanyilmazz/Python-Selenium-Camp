@@ -1,8 +1,3 @@
-# home_work_week_5
-
-![Test Result](https://i.ibb.co/8BRw9x0/test-result.png)
-
-
 * ### **@pytest.fixture:**
 > _Test işlemlerinden önce gerekli olan verileri sağlayacak kodun çalışmasını sağlayan yapıdır. ( Veritabanı bağlantısını sağlamak, İşlem yapılacak dataları sağlamak vb.)_
 
@@ -20,3 +15,10 @@
 
 * ### **@pytest.mark.xfail:**
 > _Test işlemleri sırasında belirtilen fonksiyonun, hata vermesinin mümkün olduğunu belirtir. Yani fonksiyon hata verdiğinde bize bildirilmeden es geçilmesini sağlayan yapıdır._
+
+
+# home_work_week_5
+
+![Test Result](https://i.ibb.co/8BRw9x0/test-result.png)
+
+
