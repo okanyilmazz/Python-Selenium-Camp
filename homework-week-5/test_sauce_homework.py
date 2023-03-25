@@ -145,7 +145,7 @@ class Test_Sauce_Work:
         errorMessage = self.driver.find_element(
             By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")
         self.driver.save_screenshot(
-            "homework-week-5/"+self.folderPath+"/test-invalid-login-{username}-{password}.png")
+            f"homework-week-5/{self.folderPath}/test-invalid-login-{username}-{password}.png")
         assert errorMessage.text == "Epic sadface: Username and password do not match any user in this service"
 
     def test_add_all_items_to_cart(self):
